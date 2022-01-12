@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name:       Ss Podcast
- * Description:       Example block written with ESNext standard and JSX support – build step required.
+ * Plugin Name:       GoodEpisodes Podcast Player
+ * Description:       Custom podcast player designed for GoodEpisodes
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Version:           1.0.0
+ * Author:            Sajid Shah
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       ss-podcast
@@ -23,8 +23,21 @@
  */
 function create_block_ss_podcast_block_init()
 {
-	register_block_type(__DIR__);
+	register_block_type(__DIR__, array(
+		'render_callback' => 'simpletoc_toc_render_callback'
+	));
 }
+
+function simpletoc_toc_render_callback( $attributes, $content ) {
+
+	// pr($attributes);
+	// echo $content;
+    
+	ob_start();
+		include_once('player-template.php');
+	return ob_get_clean();
+}
+
 add_action('init', 'create_block_ss_podcast_block_init');
 
 
@@ -81,4 +94,18 @@ function pr($p)
 	print_r($p);
 	echo "</pre>";
 	die;
+}
+
+add_action('wp_enqueue_scripts','ss_enque_js');
+function ss_enque_js() {
+
+	if ( ! wp_script_is( 'jquery', 'enqueued' )) {
+        wp_enqueue_script( 'jquery' );
+    }
+	
+    wp_enqueue_script( 'howler', 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js','', '2.2.3', true);
+    wp_enqueue_script( 'goodepisode-player', plugins_url( '/sound.js', __FILE__),'', '1.0', true);
+	// wp_register_script('goodepisode-player', plugins_url( '/sound.js'  , __FILE__ ),'','1.0',true);
+
+	wp_enqueue_style( 'load-fa', 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css' );
 }

@@ -2,11 +2,11 @@
 	"$schema": "https://json.schemastore.org/block.json",
 	"apiVersion": 2,
 	"name": "create-block/ss-podcast",
-	"version": "0.1.0",
-	"title": "Ss Podcast",
+	"version": "1.0.0",
+	"title": "GoodEpisodes Podcast Player",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"description": "Custom podcast player designed for GoodEpisodes",
 	"supports": {
 		"html": false
 	},

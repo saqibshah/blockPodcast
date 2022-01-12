@@ -30,7 +30,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
-			<p>{ attributes.podcastURL }</p>
+			{/* <p>{ attributes.podcastURL }</p> */}
 			{ attributes.podcastEpisodes &&
 				attributes.podcastEpisodes.length > 0 && (
 					<div>

@@ -16,18 +16,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(
-	faCode,
-	faHighlighter,
-	faBackward,
-	faPlay,
-	faPause,
-	faForward
+library.add( faCode, faHighlighter, faBackward, faPlay, faPause, faForward
 	// more icons go here
 );
 
 export default function ss_player( attributes ) {
-	console.log( attributes );
+	console.log( 'CHECK Attributes: ',attributes );
 	return (
 		<div>
 			<div class="audioPlayer">
@@ -37,7 +31,7 @@ export default function ss_player( attributes ) {
 				<div class="player">
 					<div class="episodeDetails">{ attributes.mainTitle }</div>
 					<h3 class="audioTitle">
-						How to deliver a Story on e TedX stage | Speaking
+						123 Testing 1 !!! How to deliver a Story on e TedX stage | Speaking
 						Trainer, TedX Coach
 					</h3>
 					<p class="is-mobile-hidden">
@@ -494,7 +488,7 @@ export default function ss_player( attributes ) {
 					<div class="portablePlayer">
 						<div class="mobile-content">
 							<p>
-								How to deliver a Story on TedX stage | Speaking
+								Test!! How to deliver a Story on TedX stage | Speaking
 								Trainer, TedX Coach{ ' ' }
 							</p>
 						</div>
