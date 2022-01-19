@@ -17,7 +17,7 @@
 			</h3>
 			<p class="is-mobile-hidden">
 				<!-- Our website does both education and conversion and is the way we think about it, but it actually plays all of the  classic roles. It plays as our billboard...	 -->
-				<?php echo $attributes['shortDescription']; ?>
+				<?php echo array_key_exists('shortDescription', $attributes) ? $attributes['shortDescription'] : wp_trim_words(wp_strip_all_tags($attributes['itemDesc']), 50); ?>
 			</p>
 			<div class="progressContainer">
 				<div class="controls">

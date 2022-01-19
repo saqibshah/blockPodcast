@@ -53,13 +53,9 @@ export default function Edit( { attributes, setAttributes } ) {
 			.then( ( resp ) => {
 				// console.log( resp );
 				// console.log(resp["items"]);
-				const respOptns = [
-					{
-						label: 'Choose Episode',
-						value: '',
-					},
-					...resp[ 'items' ],
-				];
+
+				const respOptns = resp.items;
+				console.log(respOptns);
 				// console.log( respOptns );
 				setAttributes( {
 					mainTitle: resp.title,
@@ -80,13 +76,14 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const onFetchChange = ( value ) => {
 		
+		// console.log(value); return;
 		if ( value ) {
 			const parseVal = JSON.parse( value );
-			console.log(parseVal)
-			// console.log( parseVal.description );
+			
 			setAttributes( {
 				episodesSelected: value,
 				itemDesc: parseVal.description,
+				audioTitle: parseVal.label
 				// audioTitle: value
 			} );
 			return;

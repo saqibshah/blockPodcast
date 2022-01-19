@@ -52,7 +52,13 @@ function fetchXML($request)
 	$url = base64_decode($request['id']);
 	$xml = simplexml_load_file($url);
 	if ($xml) {
-		$items = array();
+		$items = array([
+			
+			'label'=> 'Choose Episode',
+			'value'=> '',
+		]);
+
+		$count = 1;
 		foreach ($xml->channel->item as $value) {
 			$length = (string) $value->enclosure->attributes()->length; //(67960845*8)/128/1000/60 = 70.792546875
 			$duration = 0;
@@ -65,11 +71,19 @@ function fetchXML($request)
 				'pubDate' => (string) $value->pubDate,
 				'value' => (string) $value->enclosure->attributes()->url,
 				'duration' => $duration,
+				'label' => (string) $value->title,
+				// 'ind' => $count++,
 			);
-			$items[] = array(
+
+			array_push($items, [
 				'label' => (string) $value->title,
 				'value' => json_encode($optValue)
-			);
+			]);
+
+			// $items[] = array(
+			// 	'label' => (string) $value->title,
+			// 	'value' => ($optValue)
+			// );
 		}
 		$result = array(
 			'title' => (string) $xml->channel->title,
