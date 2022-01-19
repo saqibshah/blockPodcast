@@ -66,8 +66,12 @@ function fetchXML($request)
 				$duration = ($length * 8) / 128 / 1000 / 60;
 			}
 
+			// var_dump($value->children("content", true));
+			// $value->children("content", true));
+
 			$optValue = array(
-				'description' => (string) $value->description,
+				// 'description' => (string) $value->description,
+				'description' => (string) $value->children("content", true),
 				'pubDate' => (string) $value->pubDate,
 				'value' => (string) $value->enclosure->attributes()->url,
 				'duration' => $duration,

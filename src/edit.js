@@ -79,7 +79,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		// console.log(value); return;
 		if ( value ) {
 			const parseVal = JSON.parse( value );
-			
+			console.log(parseVal);
 			setAttributes( {
 				episodesSelected: value,
 				itemDesc: parseVal.description,
