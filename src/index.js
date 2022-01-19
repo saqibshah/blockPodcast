@@ -12,11 +12,11 @@ import { registerBlockType } from '@wordpress/blocks';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './style.scss';
-
+// import './style.scss';
 /**
  * Internal dependencies
  */
+import './adminstyle.scss';
 import Edit from './edit';
 import save from './save';
 
@@ -48,6 +48,17 @@ registerBlockType( 'create-block/ss-podcast', {
 			type: 'object',
 		},
 		mainTitle: {
+			type: 'string',
+			default: '',
+		},
+		timestamps: {
+			type: 'array',
+		},
+		audioTitle: {
+			type: 'string',
+			default: '',
+		},
+		shortDescription: {
 			type: 'string',
 			default: '',
 		},
