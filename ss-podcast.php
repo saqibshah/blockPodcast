@@ -3,15 +3,12 @@
 /**
  * Plugin Name:       GoodEpisodes Podcast Player
  * Description:       Custom podcast player designed for GoodEpisodes
- * Requires at least: 5.8
- * Requires PHP:      7.0
- * Version:           1.0.0
  * Author:            Sajid Shah
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       ss-podcast
  *
- * @package           create-block
+
  */
 
 /**
@@ -19,7 +16,7 @@
  * Behind the scenes, it registers also all assets so they can be enqueued
  * through the block editor in the corresponding context.
  *
- * @see https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/writing-your-first-block-type/
+
  */
 function create_block_ss_podcast_block_init()
 {
@@ -30,9 +27,10 @@ function create_block_ss_podcast_block_init()
 
 function simpletoc_toc_render_callback( $attributes, $content ) {
 
-	// pr($attributes);
-	// echo $content;
-    
+	$selectedEpisode = $attributes && array_key_exists('episodesSelected', $attributes) ? (json_decode($attributes['episodesSelected'])) : false;
+	$audio = ($selectedEpisode && $selectedEpisode->value) ? $selectedEpisode->value : false;
+	$duration = isset($selectedEpisode->duration) ? $selectedEpisode->duration : false;
+	$hasTimestamps = !empty($attributes['timestamps']) ? true : false;
 	ob_start();
 		include_once('player-template.php');
 	return ob_get_clean();
@@ -88,12 +86,14 @@ function fetchXML($request)
 	wp_die();
 	// return new WP_REST_Response(['success' => true]);
 }
-function pr($p)
-{
-	echo "<pre>";
-	print_r($p);
-	echo "</pre>";
-	die;
+if(!function_exists('pr')){
+	function pr($p)
+	{
+		echo "<pre>";
+		print_r($p);
+		echo "</pre>";
+		die;
+	}
 }
 
 add_action('wp_enqueue_scripts','ss_enque_js');
@@ -108,4 +108,18 @@ function ss_enque_js() {
 	// wp_register_script('goodepisode-player', plugins_url( '/sound.js'  , __FILE__ ),'','1.0',true);
 
 	wp_enqueue_style( 'load-fa', 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css' );
+	// wp_enqueue_style( 'goodepisode-player', plugins_url( '/build/player.css', __FILE__) );
+	wp_enqueue_style( 'goodepisode-player', plugins_url( '/build/index.css', __FILE__) );
+}
+
+// Adding custom page template
+add_filter( 'single_template', 'fw_podcast_page_template' );
+function fw_podcast_page_template( $page_template )
+{
+	$page_template = dirname( __FILE__ ) . '/page-player.php';
+	return $page_template;
+
+    // if ( is_page( 'Your Page Name' ) ) {
+
+    // }
 }
