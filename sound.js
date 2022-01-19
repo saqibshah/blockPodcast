@@ -29,6 +29,7 @@ jQuery(document).ready(function($){
 		   if(localStorage.getItem(storageVar)){
 			   
 			   howler.seek(localStorage.getItem(storageVar) - 5);
+
 			   updateWidth(true); //force update.. 
 		   }
 	   });
@@ -381,7 +382,6 @@ jQuery(document).ready(function($){
    
 		   // $(this)
 		   $('.top-buttons li[data-load="'+ target +'"]').click().addClass('active');
-
 	   });
    
 	   // back to player

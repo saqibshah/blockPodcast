@@ -79,12 +79,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const onFetchChange = ( value ) => {
+		
 		if ( value ) {
 			const parseVal = JSON.parse( value );
+			console.log(parseVal)
 			// console.log( parseVal.description );
 			setAttributes( {
 				episodesSelected: value,
 				itemDesc: parseVal.description,
+				// audioTitle: value
 			} );
 			return;
 		}
@@ -241,7 +244,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		attributes.timestamps = [];
 		setAttributes({timestamps:[]});
 	}
-	
 		let podcastBody;
 		if(attributes.isLoading){
 			podcastBody = (
