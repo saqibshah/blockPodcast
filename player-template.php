@@ -12,7 +12,6 @@
 				<!-- Demand Gen Visionaries -->
 			</div>
 			<h3 class="audioTitle">
-				<!-- How to deliver a Story on e TedX stage | Speaking Trainer, TedX Coach  -->
 				<?php echo $attributes['audioTitle']; ?>
 			</h3>
 			<p class="is-mobile-hidden">
@@ -28,6 +27,7 @@
 					
 					<span class="btn-bg-container first-time hwPlay" id="play">
 						<i class="ctl-btn fas fa-play"></i>
+						<!-- <i class="fas fa-spinner fa-spin"></i> -->
 					</span>
 					<span class="btn-bg-container hwPause" style="display: none;" id="pause" >
 						<i class="ctl-btn fas fa-pause"></i>
